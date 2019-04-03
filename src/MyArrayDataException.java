@@ -1,8 +1,11 @@
 public class MyArrayDataException extends Exception {
     private int index;
-    public MyArrayDataException (String message, int index){
+    private int row;
+    private int col;
+    public MyArrayDataException (String message, int row, int col){
         super(message);
-        this.index = index;
+        this.row = row;
+        this.col = col;
 
     }
 }
