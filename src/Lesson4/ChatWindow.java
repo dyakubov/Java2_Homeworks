@@ -14,7 +14,13 @@ public class ChatWindow extends JFrame {
 
         //Большое текстовое поле для отображения переписки в центре окна
         JTextArea textArea = new JTextArea();
-        add(textArea, BorderLayout.CENTER);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        JScrollPane sPane = new JScrollPane(textArea,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        add(sPane, BorderLayout.CENTER);
 
         //Однострочное текстовое поле для ввода сообщений
         JTextField field = new JTextField();
