@@ -27,6 +27,7 @@ public class ChatWindow extends JFrame {
         field.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 sendMessage(textArea, field);
             }
         });
@@ -36,7 +37,7 @@ public class ChatWindow extends JFrame {
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                sendMessage(textArea, field);
+                                sendMessage(textArea, field);
             }
         });
 
@@ -53,9 +54,10 @@ public class ChatWindow extends JFrame {
 
     //Метод отправки сообщения
     private void sendMessage(JTextArea textArea, JTextField field){
-        if(!field.getText().equals("")) { //Проверяем, что не отправляем пустую строку
+        if(!field.getText().isEmpty()) { //Проверяем, что не отправляем пустую строку
             textArea.setText(textArea.getText() + "\n" + field.getText()); //Получаем содержимое переписки и добавляем к нему новое сообщение
             field.setText(""); //Очищаем содержимое тестовой строки
+            field.requestFocus();
         }
     }
 }
