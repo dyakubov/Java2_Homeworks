@@ -1,5 +1,6 @@
 package Chat.GUI;
 
+import Chat.ClientHandler;
 import Chat.MessageReciever;
 import Chat.Network;
 import Chat.TextMessage;
@@ -24,11 +25,13 @@ public class MainWindow extends JFrame implements MessageReciever {
     private final JButton sendButton;
 
     private final JTextField messageField;
+    private final JTextField recipientField;
 
     private final Network network;
 
     public MainWindow() {
-        setTitle("Application");
+        String title = "Chat";
+        setTitle(title);
         setBounds(200,200, 500, 500);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,8 +55,9 @@ public class MainWindow extends JFrame implements MessageReciever {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String text = messageField.getText();
+                String recipient = recipientField.getText();
                 if (text != null && !text.trim().isEmpty()) {
-                    TextMessage msg = new TextMessage(network.getLogin(), "ivan", text);
+                    TextMessage msg = new TextMessage(network.getLogin(), recipient, text);
                     messageListModel.add(messageListModel.size(), msg);
                     messageField.setText(null);
 
@@ -64,12 +68,17 @@ public class MainWindow extends JFrame implements MessageReciever {
         });
         sendMessagePanel.add(sendButton, BorderLayout.EAST);
         messageField = new JTextField();
+        recipientField = new JTextField();
+
         sendMessagePanel.add(messageField, BorderLayout.CENTER);
+        sendMessagePanel.add(recipientField, BorderLayout.WEST);
+        recipientField.setPreferredSize(new Dimension(50, 10));
 
         add(sendMessagePanel, BorderLayout.SOUTH);
         setVisible(true);
 
         this.network = new Network("localhost", 7777, this);
+
 
         LoginDialog loginDialog = new LoginDialog(this, network);
         loginDialog.setVisible(true);
@@ -77,6 +86,9 @@ public class MainWindow extends JFrame implements MessageReciever {
         if (!loginDialog.isConnected()) {
             System.exit(0);
         }
+
+        title = "Chat. Login: " + network.getLogin();
+        setTitle(title);
     }
 
     @Override
