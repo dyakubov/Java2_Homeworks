@@ -37,10 +37,6 @@ public class ClientHandler {
 
                         }
 
-
-                        // TODO проверить является ли msg сообщением для пользователя
-                        // TODO если да, то переслать это сообщение пользователю
-
                         String userTo = msgParts[1];
                         String message = msgParts[3];
 

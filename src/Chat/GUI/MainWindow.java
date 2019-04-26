@@ -61,7 +61,6 @@ public class MainWindow extends JFrame implements MessageReciever {
                     messageListModel.add(messageListModel.size(), msg);
                     messageField.setText(null);
 
-                    // TODO реализовать проверку, что сообщение не пустое
                     network.sendTextMessage(msg);
                 }
             }

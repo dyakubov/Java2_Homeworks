@@ -7,8 +7,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-import static Chat.MessagePatterns.AUTH_PATTERN;
-import static Chat.MessagePatterns.MESSAGE_SEND_PATTERN;
+import static Chat.MessagePatterns.*;
 
 public class Network {
 
@@ -39,18 +38,10 @@ public class Network {
                         String[] msgParts = text.split(" ");
                         if (msgParts.length != 4 || !msgParts[0].equals("/w")) {
                             System.out.printf("Некорректное сообщение", text);
-
                         }
 
-
-                        // TODO проверить является ли msg сообщением для пользователя
-                        // TODO если да, то переслать это сообщение пользователю
-
-                        String userTo = msgParts[1];
                         String userFrom = msgParts[2];
                         String message = msgParts[3];
-                        // TODO проверить, пришло ли в строке text сообщение
-                        // TODO определить текст и отправителя
                         TextMessage textMessage = new TextMessage(userFrom, login, message);
                         messageReciever.submitMessage(textMessage);
 

@@ -86,8 +86,5 @@ public class ChatServer {
             }
         }
         else System.out.printf("Пользователь %s не существует", userTo);
-
-        // TODO убедиться, что userToClientHandler существует и отправить сообщение
-        // TODO для отправки сообщения нужно вызвать метод userToClientHandler.sendMessage()
     }
 }
